@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+.pnpm-debug.log*
+
+# Build
+dist/
+
+# Editor
+.vscode/
+.vim/
+
+# Misc
+.DS_Store
+.tool-versions

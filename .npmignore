@@ -1,0 +1,13 @@
+# Dot files
+
+.editorconfig
+.eslintignore
+.eslintrc
+.gitignore
+.pnpm-debug.log*
+.prettierrc
+.simple-git-hooks.json
+
+# Tests
+
+test/

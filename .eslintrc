@@ -1,0 +1,33 @@
+{
+  "extends": "@logux/eslint-config/ts",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    }
+  },
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["type"],
+          ["builtin", "external"],
+          ["parent", "sibling", "index"]
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  }
+}

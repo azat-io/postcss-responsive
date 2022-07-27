@@ -1,0 +1,52 @@
+{
+  "name": "postcss-responsive",
+  "description": "PostCSS plugin that improves developer experience of responsive design",
+  "version": "0.1.0",
+  "main": "./dist/umd.js",
+  "module": "./dist/es.js",
+  "repository": "azat-io/postcss-responsive",
+  "author": "Azat S. <to@azat.io>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "css",
+    "postcss",
+    "postcss-plugin",
+    "responsive",
+    "clamp"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "prepare": "pnpm run build",
+    "lint": "eslint .",
+    "test:types": "tsc --noEmit --pretty",
+    "test:unit": "uvu -r tsm test",
+    "test": "pnpm run lint && pnpm run test:types && pnpm run test:unit"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
+  "dependencies": {
+    "postcss-value-parser": "4.2.0"
+  },
+  "devDependencies": {
+    "@logux/eslint-config": "47.2.0",
+    "@types/node": "18.6.1",
+    "@typescript-eslint/eslint-plugin": "5.31.0",
+    "@typescript-eslint/parser": "5.31.0",
+    "eslint": "8.20.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-n": "15.2.4",
+    "eslint-plugin-prefer-let": "3.0.1",
+    "eslint-plugin-promise": "6.0.0",
+    "postcss": "8.4.14",
+    "simple-git-hooks": "2.8.0",
+    "tsm": "2.2.2",
+    "typescript": "4.7.4",
+    "uvu": "0.5.6",
+    "vite": "3.0.3"
+  }
+}
