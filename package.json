@@ -1,7 +1,7 @@
 {
   "name": "postcss-responsive",
   "description": "PostCSS plugin that improves developer experience of responsive design",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./dist/umd.js",
   "module": "./dist/es.js",
   "repository": "azat-io/postcss-responsive",
