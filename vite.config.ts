@@ -6,7 +6,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'plugin/index.ts'),
       name: 'postcss-responsive',
-      fileName: format => `index.${format}.js`,
+      fileName: format => `${format}.js`,
     },
     rollupOptions: {
       external: ['postcss-value-parser'],
