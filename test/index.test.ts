@@ -1,8 +1,7 @@
 import type { PluginOptions } from '../plugin'
 
-import * as assert from 'uvu/assert'
+import { test, expect } from 'vitest'
 import postcss from 'postcss'
-import { test } from 'uvu'
 
 import postcssResponsive from '../plugin'
 
@@ -12,8 +11,8 @@ let testPlugin = async (
   opts?: PluginOptions,
 ): Promise<void> => {
   let result = await postcss([postcssResponsive(opts)]).process(input)
-  assert.is(result.css, output)
-  assert.is(result.warnings().length, 0)
+  expect(result.css).toBe(output)
+  expect(result.warnings).toHaveLength(0)
 }
 
 test('Test postcss-responsive plugin', () => {
@@ -63,5 +62,3 @@ test('Test postcss-responsive plugin', () => {
     '.test { font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem); line-height: clamp(1.5rem, 1.25rem + 1vw, 1.75rem); }',
   )
 })
-
-test.run()

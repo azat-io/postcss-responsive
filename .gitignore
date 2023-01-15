@@ -5,6 +5,9 @@ node_modules/
 # Build
 dist/
 
+# Testing
+coverage/
+
 # Editor
 .vscode/
 .vim/

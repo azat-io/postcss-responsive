@@ -22,7 +22,7 @@
     "prepare": "pnpm run build",
     "lint": "eslint .",
     "test:types": "tsc --noEmit --pretty",
-    "test:unit": "uvu -r tsm test",
+    "test:unit": "vitest run --coverage",
     "test": "pnpm run lint && pnpm run test:types && pnpm run test:unit"
   },
   "peerDependencies": {
@@ -38,6 +38,7 @@
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
+    "@vitest/coverage-c8": "^0.27.1",
     "eslint": "^8.31.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.4",
@@ -48,7 +49,7 @@
     "simple-git-hooks": "^2.8.1",
     "tsm": "^2.3.0",
     "typescript": "^4.9.4",
-    "uvu": "^0.5.6",
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
+    "vitest": "^0.27.1"
   }
 }
