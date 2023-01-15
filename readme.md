@@ -1,5 +1,7 @@
 # PostCSS Responsive
 
+<img align="right" width="120" height="120" title="PostCSS" src="http://postcss.github.io/postcss/logo.svg">
+
 [PostCSS](https://postcss.org) plugin that simplifies the creation of adaptive design with custom `responsive()` function.
 
 ## Usage
