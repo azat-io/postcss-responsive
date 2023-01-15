@@ -32,6 +32,8 @@
     "postcss-value-parser": "4.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "@logux/eslint-config": "47.2.0",
     "@types/node": "18.6.1",
     "@typescript-eslint/eslint-plugin": "5.31.0",
