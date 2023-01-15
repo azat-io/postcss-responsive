@@ -19,11 +19,15 @@
   ],
   "scripts": {
     "build": "vite build",
-    "prepare": "pnpm run build",
+    "release": "release:check && pnpm release:version && pnpm release:publish",
+    "release:changelog": "standard-version --infile changelog.md --same-file --skip.bump --skip.commit --skip.tag",
+    "release:check": "pnpm test && pnpm build",
+    "release:publish": "pnpm publish",
+    "release:version": "bumpp package.json --execute=\"pnpm release:changelog && git add changelog.md\" --commit \"build: publish v%s\" --tag --all",
     "lint": "eslint .",
     "test:types": "tsc --noEmit --pretty",
     "test:unit": "vitest run --coverage",
-    "test": "pnpm run lint && pnpm run test:types && pnpm run test:unit"
+    "test": "pnpm lint && pnpm test:types && pnpm test:unit"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"
@@ -39,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
     "@vitest/coverage-c8": "^0.27.1",
+    "bumpp": "^8.2.1",
     "eslint": "^8.31.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.4",
@@ -47,6 +52,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "postcss": "^8.4.21",
     "simple-git-hooks": "^2.8.1",
+    "standard-version": "^9.5.0",
     "tsm": "^2.3.0",
     "typescript": "^4.9.4",
     "vite": "^4.0.4",
