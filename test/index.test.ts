@@ -60,7 +60,7 @@ test('Test postcss-responsive plugin', () => {
 
   testPlugin(
     '.test { font-size: responsive(1rem, 1.125rem, 400px, 800px); line-height: responsive(1.5rem, 1.75rem, 400px, 800px); }',
-    '',
+    '.test { font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem); line-height: clamp(1.5rem, 1.25rem + 1vw, 1.75rem); }',
   )
 })
 
