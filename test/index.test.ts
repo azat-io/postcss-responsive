@@ -1,21 +1,30 @@
 import type { PluginOptions } from '../plugin'
+import type { Result } from 'postcss'
 
-import { test, expect } from 'vitest'
+import { expect, it } from 'vitest'
 import postcss from 'postcss'
 
 import postcssResponsive from '../plugin'
+
+let convertCss = async (
+  input: string,
+  opts?: PluginOptions,
+): Promise<Result> => {
+  let result = await postcss([postcssResponsive(opts)]).process(input)
+  return result
+}
 
 let testPlugin = async (
   input: string,
   output: string,
   opts?: PluginOptions,
 ): Promise<void> => {
-  let result = await postcss([postcssResponsive(opts)]).process(input)
+  let result = await convertCss(input, opts)
   expect(result.css).toBe(output)
   expect(result.warnings).toHaveLength(0)
 }
 
-test('Test postcss-responsive plugin', () => {
+it('converts responsive function to css clamp', () => {
   testPlugin(
     '.test { font-size: responsive(2.25rem, 3rem); }',
     '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
@@ -61,4 +70,50 @@ test('Test postcss-responsive plugin', () => {
     '.test { font-size: responsive(1rem, 1.125rem, 400px, 800px); line-height: responsive(1.5rem, 1.75rem, 400px, 800px); }',
     '.test { font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem); line-height: clamp(1.5rem, 1.25rem + 1vw, 1.75rem); }',
   )
+})
+
+it("don't supports unknown units", async () => {
+  expect(async () => {
+    await convertCss('.test { font-size: responsive(18unit, 24unit); }', {
+      minWidth: 480,
+      maxWidth: 1280,
+    })
+  }).rejects.toThrow('Invalid unit unit. Try to use px or rem.')
+})
+
+it('throws an error if there is not enough data', async () => {
+  expect(async () => {
+    await convertCss('.test { font-size: responsive(16px, 24px); }', {
+      maxWidth: 1280,
+    })
+  }).rejects.toThrow('Missing min width in responsive function.')
+
+  expect(async () => {
+    await convertCss('.test { font-size: responsive(16px, 24px); }', {
+      minWidth: 480,
+    })
+  }).rejects.toThrow('Missing max width in responsive function.')
+
+  expect(async () => {
+    await convertCss('.test { font-size: responsive(); }', {
+      minWidth: 480,
+      maxWidth: 1280,
+    })
+  }).rejects.toThrow('Missing min font size in responsive function.')
+
+  expect(async () => {
+    await convertCss('.test { font-size: responsive(16px); }', {
+      minWidth: 480,
+      maxWidth: 1280,
+    })
+  }).rejects.toThrow('Missing max font size in responsive function.')
+})
+
+it('max width should be greater than mix width', async () => {
+  expect(async () => {
+    await convertCss('.test { font-size: responsive(16px, 24px); }', {
+      minWidth: 960,
+      maxWidth: 800,
+    })
+  }).rejects.toThrow('Max width must be greater than the minimum.')
 })

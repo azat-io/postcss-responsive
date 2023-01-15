@@ -20,13 +20,19 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
 
     let parsedValue = valueParser(declValue)
 
-    let convertToRem = (value: string | number, root: number): number => {
+    let convertToRem = (
+      value?: string | number,
+      root?: number,
+    ): number | undefined => {
+      if (value === undefined || root === undefined) {
+        return undefined
+      }
       let unit: string
       if (typeof value === 'number') {
         unit = 'px'
         value = `${value}${unit}`
       } else {
-        unit = value.replace(/\d+([,.]\d+)?/g, '')
+        unit = value.replace(/\d+(\.\d+)?/g, '')
       }
       if (!['px', 'em', 'rem'].includes(unit)) {
         throw decl.error(`Invalid unit ${unit}. Try to use px or rem.`, {
@@ -38,7 +44,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
     }
 
     let toFixed = (value: number): number => parseFloat(value.toFixed(4))
-    let hasNoValue = (value: number): boolean => !Number.isFinite(value)
+    let hasNoValue = (value?: number): boolean => !Number.isFinite(value)
 
     parsedValue.walk(node => {
       if (node.type !== 'function' || node.value !== 'responsive') {
@@ -62,12 +68,12 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
         throw decl.error('Missing min font size in responsive function.')
       } else if (hasNoValue(maxFontSize)) {
         throw decl.error('Missing max font size in responsive function.')
-      } else if (maxWidth < minWidth) {
+      } else if (maxWidth! < minWidth!) {
         throw decl.error('Max width must be greater than the minimum.')
       }
 
-      let slope = (maxFontSize - minFontSize) / (maxWidth - minWidth)
-      let intersection = toFixed(-minWidth * slope + minFontSize)
+      let slope = (maxFontSize! - minFontSize!) / (maxWidth! - minWidth!)
+      let intersection = toFixed(-minWidth! * slope + minFontSize!)
       let preferred = `${intersection}rem + ${toFixed(slope * 100)}vw`
 
       let value = `clamp(${minFontSize}rem, ${preferred}, ${maxFontSize}rem)`
