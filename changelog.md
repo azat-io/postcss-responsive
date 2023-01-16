@@ -14,6 +14,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * fix module path ([e3cf7cb](https://github.com/azat-io/postcss-responsive/commit/e3cf7cb3daed9f3589844e143c4ea4960f21f8c5))
 
-### 0.1.0
+## 0.1.0
 
 Initial release
