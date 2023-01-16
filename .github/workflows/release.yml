@@ -1,0 +1,33 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: push to release branch
+        run: git push origin HEAD:release
+
+      - name: create release
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        id: release_tag
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            Please refer to [changelog.md](https://github.com/azat-io/azat-io/blob/main/changelog.md) for details.
+          draft: false
+          prerelease: false
