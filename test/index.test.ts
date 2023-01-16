@@ -117,3 +117,14 @@ it('max width should be greater than mix width', async () => {
     })
   }).rejects.toThrow('Max width must be greater than the minimum.')
 })
+
+it('supports negative values', () => {
+  testPlugin(
+    '.test { letter-spacing: responsive(-1px, -2px); }',
+    '.test { letter-spacing: clamp(-0.0625rem, -0.025rem + -0.125vw, -0.125rem); }',
+    {
+      minWidth: 480,
+      maxWidth: 1280,
+    },
+  )
+})
