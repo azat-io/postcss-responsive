@@ -22,4 +22,4 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           body: |
-            Please refer to [changelog.md](https://github.com/azat-io/postcss-responsive/blob/main/changelog.md) for details.
+            Please refer to [changelog.md](https://github.com/${{ github.repository }}/blob/main/changelog.md) for details.
