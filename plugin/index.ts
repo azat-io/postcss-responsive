@@ -32,7 +32,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
         unit = 'px'
         value = `${value}${unit}`
       } else {
-        unit = value.replace(/\d+(\.\d+)?/g, '')
+        unit = value.replace(/(-)?\d+(\.\d+)?/g, '')
       }
       if (!['px', 'em', 'rem'].includes(unit)) {
         throw decl.error(`Invalid unit ${unit}. Try to use px or rem.`, {
