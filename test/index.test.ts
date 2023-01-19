@@ -128,3 +128,15 @@ it('supports negative values', () => {
     },
   )
 })
+
+it('supports custom function name', () => {
+  testPlugin(
+    '.test { font-size: fluid(2.25rem, 3rem); }',
+    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
+    {
+      minWidth: 480,
+      maxWidth: 1280,
+      funcName: 'fluid',
+    },
+  )
+})

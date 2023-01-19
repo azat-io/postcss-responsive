@@ -33,6 +33,20 @@ and set this plugin in settings.
 
 **Step 4:** Just add `responsive()` function into your CSS code. This function can take 2 or 4 arguments: minimum and maximum value and minimum and maximum viewport width (You can set it in plugin settings).
 
+## Options
+
+### minWidth
+
+The minimum value of the viewport, starting from which we will build a fluid layout. By default, it is not preserved.
+
+### maxWidth
+
+The maximum value of the viewport, ending with which we will build a fluid layout. By default, it is not preserved.
+
+### funcName
+
+You can set your own CSS function name. Default value is `responsive`
+
 ## Example
 
 ### Input
