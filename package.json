@@ -29,6 +29,9 @@
     "test:unit": "vitest run --coverage",
     "test": "pnpm lint && pnpm test:types && pnpm test:unit"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "postcss": "^8.0.0"
   },
