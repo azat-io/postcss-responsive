@@ -43,11 +43,12 @@
     "@commitlint/config-conventional": "^17.4.2",
     "@logux/eslint-config": "^48.0.0",
     "@types/node": "^18.11.18",
-    "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.48.2",
-    "@vitest/coverage-c8": "^0.27.2",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "@vitest/coverage-c8": "^0.28.3",
+    "@vitest/runner": "^0.28.3",
     "bumpp": "^8.2.1",
-    "eslint": "^8.32.0",
+    "eslint": "^8.33.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
@@ -59,7 +60,6 @@
     "tsm": "^2.3.0",
     "typescript": "^4.9.4",
     "vite": "^4.0.4",
-    "vite-node": "^0.27.2",
-    "vitest": "^0.27.2"
+    "vitest": "^0.28.3"
   }
 }
