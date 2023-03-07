@@ -27,7 +27,7 @@ let testPlugin = async (
 it('converts responsive function to css clamp', () => {
   testPlugin(
     '.test { font-size: responsive(2.25rem, 3rem); }',
-    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
+    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vi, 3rem); }',
     {
       minWidth: 480,
       maxWidth: 1280,
@@ -36,12 +36,12 @@ it('converts responsive function to css clamp', () => {
 
   testPlugin(
     '.test { font-size: responsive(2.25rem, 3rem, 480px, 1280px); }',
-    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
+    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vi, 3rem); }',
   )
 
   testPlugin(
     '.test { font-size: responsive(2.25rem, 3rem, 480px, 1280px); }',
-    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
+    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vi, 3rem); }',
     {
       minWidth: 400,
       maxWidth: 1200,
@@ -50,7 +50,7 @@ it('converts responsive function to css clamp', () => {
 
   testPlugin(
     '.test { display: grid; grid-template-columns: responsive(100px, 300px) 1fr; }',
-    '.test { display: grid; grid-template-columns: clamp(6.25rem, -1.25rem + 25vw, 18.75rem) 1fr; }',
+    '.test { display: grid; grid-template-columns: clamp(6.25rem, -1.25rem + 25vi, 18.75rem) 1fr; }',
     {
       minWidth: 480,
       maxWidth: 1280,
@@ -59,7 +59,7 @@ it('converts responsive function to css clamp', () => {
 
   testPlugin(
     '.test { display: grid; grid-template-columns: responsive(100px, 300px) responsive(100px, 300px) 1fr; }',
-    '.test { display: grid; grid-template-columns: clamp(6.25rem, -1.25rem + 25vw, 18.75rem) clamp(6.25rem, -1.25rem + 25vw, 18.75rem) 1fr; }',
+    '.test { display: grid; grid-template-columns: clamp(6.25rem, -1.25rem + 25vi, 18.75rem) clamp(6.25rem, -1.25rem + 25vi, 18.75rem) 1fr; }',
     {
       minWidth: 480,
       maxWidth: 1280,
@@ -68,7 +68,7 @@ it('converts responsive function to css clamp', () => {
 
   testPlugin(
     '.test { font-size: responsive(1rem, 1.125rem, 400px, 800px); line-height: responsive(1.5rem, 1.75rem, 400px, 800px); }',
-    '.test { font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem); line-height: clamp(1.5rem, 1.25rem + 1vw, 1.75rem); }',
+    '.test { font-size: clamp(1rem, 0.875rem + 0.5vi, 1.125rem); line-height: clamp(1.5rem, 1.25rem + 1vi, 1.75rem); }',
   )
 })
 
@@ -121,7 +121,7 @@ it('max width should be greater than mix width', async () => {
 it('supports negative values', () => {
   testPlugin(
     '.test { letter-spacing: responsive(-1px, -2px); }',
-    '.test { letter-spacing: clamp(-0.0625rem, -0.025rem + -0.125vw, -0.125rem); }',
+    '.test { letter-spacing: clamp(-0.0625rem, -0.025rem + -0.125vi, -0.125rem); }',
     {
       minWidth: 480,
       maxWidth: 1280,
@@ -132,7 +132,7 @@ it('supports negative values', () => {
 it('supports custom function name', () => {
   testPlugin(
     '.test { font-size: fluid(2.25rem, 3rem); }',
-    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
+    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vi, 3rem); }',
     {
       minWidth: 480,
       maxWidth: 1280,

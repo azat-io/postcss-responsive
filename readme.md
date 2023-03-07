@@ -67,17 +67,17 @@ You can set your own CSS function name. Default value is `responsive`
 ```css
 .container {
   display: grid;
-  grid-template-columns: clamp(11.25rem, 9rem + 7.5vw, 15rem) 1fr;
-  grid-gap: clamp(0.5rem, 0.2rem + 1vw, 1rem);
-  padding: clamp(1rem, 0.4rem + 2vw, 2rem) clamp(1rem, 0.7rem + 1vw, 1.5rem);
-  font-size: clamp(1rem, 0.875rem + 0.5vw, 1.125rem);
-  line-height: clamp(1.5rem, 1.25rem + 1vw, 1.75rem);
+  grid-template-columns: clamp(11.25rem, 9rem + 7.5vi, 15rem) 1fr;
+  grid-gap: clamp(0.5rem, 0.2rem + 1vi, 1rem);
+  padding: clamp(1rem, 0.4rem + 2vi, 2rem) clamp(1rem, 0.7rem + 1vi, 1.5rem);
+  font-size: clamp(1rem, 0.875rem + 0.5vi, 1.125rem);
+  line-height: clamp(1.5rem, 1.25rem + 1vi, 1.75rem);
 }
 ```
 
 ### Browser Support
 
-`postcss-responsive` plugin uses `clamp()` function and `vw` units. So it works on all modern browsers. You can check browser support [here](https://caniuse.com/?search=clamp)
+`postcss-responsive` plugin uses `clamp()` function and `vi` units. So it works on all modern browsers. You can check browser support [here](https://caniuse.com/?search=clamp)
 
 ## Contributing
 

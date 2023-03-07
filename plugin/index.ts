@@ -77,7 +77,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
 
       let slope = (maxFontSize! - minFontSize!) / (maxWidth! - minWidth!)
       let intersection = toFixed(-minWidth! * slope + minFontSize!)
-      let preferred = `${intersection}rem + ${toFixed(slope * 100)}vw`
+      let preferred = `${intersection}rem + ${toFixed(slope * 100)}vi`
 
       let value = `clamp(${minFontSize}rem, ${preferred}, ${maxFontSize}rem)`
       let newNode = node as Node
