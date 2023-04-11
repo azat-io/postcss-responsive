@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/azat-io/postcss-responsive/compare/v0.5.1...v0.5.2) (2023-04-11)
+
+
+### Features
+
+* clean configuration data ([72a83ad](https://github.com/azat-io/postcss-responsive/commit/72a83adb0cae106f98ee76016fa2b4831b4f0fea))
+
 ### [0.5.1](https://github.com/azat-io/postcss-responsive/compare/v0.5.0...v0.5.1) (2023-04-04)
 
 
