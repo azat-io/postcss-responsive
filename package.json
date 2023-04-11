@@ -48,12 +48,12 @@
     "@commitlint/config-conventional": "^17.4.4",
     "@logux/eslint-config": "^49.0.0",
     "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "@vitest/coverage-c8": "^0.29.8",
-    "@vitest/runner": "^0.29.8",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "@vitest/coverage-c8": "^0.30.1",
+    "@vitest/runner": "^0.30.1",
     "bumpp": "^9.1.0",
-    "eslint": "^8.37.0",
+    "eslint": "^8.38.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
@@ -63,8 +63,8 @@
     "simple-git-hooks": "^2.8.1",
     "standard-version": "^9.5.0",
     "tsm": "^2.3.0",
-    "typescript": "^5.0.3",
+    "typescript": "^5.0.4",
     "vite": "^4.2.1",
-    "vitest": "^0.29.8"
+    "vitest": "^0.30.1"
   }
 }
