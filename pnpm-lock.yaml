@@ -33,6 +33,9 @@ devDependencies:
   bumpp:
     specifier: ^9.1.0
     version: 9.1.0
+  clean-publish:
+    specifier: ^4.2.0
+    version: 4.2.0
   eslint:
     specifier: ^8.38.0
     version: 8.38.0
@@ -1178,6 +1181,17 @@ packages:
   /chownr@2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
+    dev: true
+
+  /clean-publish@4.2.0:
+    resolution: {integrity: sha512-dqZF5y6KtlkYhbnJoXiOCP4L1TPdI7HtuDysslUrbI8vLPu65ZjVO3pu5xp4qH0X2cWdDN/La04woe6fg4LNSw==}
+    engines: {node: '>= 16.0.0'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+      fast-glob: 3.2.12
+      lilconfig: 2.1.0
+      micromatch: 4.0.5
     dev: true
 
   /cliui@7.0.4:
@@ -2953,6 +2967,11 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
+
+  /lilconfig@2.1.0:
+    resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
+    engines: {node: '>=10'}
     dev: true
 
   /lines-and-columns@1.2.4:
