@@ -8,6 +8,7 @@ export interface PluginOptions {
   minWidth?: number
   maxWidth?: number
   funcName?: string
+  legacy?: boolean
 }
 
 const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
@@ -82,7 +83,8 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
       } else {
         let slope = (maxFontSize! - minFontSize!) / (maxWidth! - minWidth!)
         let intersection = toFixed(-minWidth! * slope + minFontSize!)
-        let preferred = `${intersection}rem + ${toFixed(slope * 100)}vi`
+        let unit = options.legacy ? 'vw' : 'vi'
+        let preferred = `${intersection}rem + ${toFixed(slope * 100)}${unit}`
 
         let value = `clamp(${minFontSize}rem, ${preferred}, ${maxFontSize}rem)`
         newNode.type = 'word'

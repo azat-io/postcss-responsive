@@ -47,6 +47,10 @@ The maximum value of the viewport, ending with which we will build a fluid layou
 
 You can set your own CSS function name. Default value is `responsive`
 
+### legacy
+
+Use `vw` units instead of `vi`. Default value is `false`
+
 ## Example
 
 ### Input
