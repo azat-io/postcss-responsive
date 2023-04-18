@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/azat-io/postcss-responsive/compare/v0.5.2...v0.6.0) (2023-04-18)
+
+
+### Features
+
+* support legacy css units ([#4](https://github.com/azat-io/postcss-responsive/issues/4)) ([4087210](https://github.com/azat-io/postcss-responsive/commit/4087210bda82a618e19b3b0de014e3e020e45861))
+
+
+### Bug Fixes
+
+* do not convert value to clamp if min and max size are equal ([f80d5a5](https://github.com/azat-io/postcss-responsive/commit/f80d5a5360536e8e91cd498d31932621e56fa91d))
+
 ### [0.5.2](https://github.com/azat-io/postcss-responsive/compare/v0.5.1...v0.5.2) (2023-04-11)
 
 
