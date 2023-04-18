@@ -75,14 +75,19 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
         throw decl.error('Max width must be greater than the minimum.')
       }
 
-      let slope = (maxFontSize! - minFontSize!) / (maxWidth! - minWidth!)
-      let intersection = toFixed(-minWidth! * slope + minFontSize!)
-      let preferred = `${intersection}rem + ${toFixed(slope * 100)}vi`
-
-      let value = `clamp(${minFontSize}rem, ${preferred}, ${maxFontSize}rem)`
       let newNode = node as Node
-      newNode.type = 'word'
-      newNode.value = value
+      if (minFontSize === maxFontSize) {
+        newNode.type = 'word'
+        newNode.value = `${minFontSize}rem`
+      } else {
+        let slope = (maxFontSize! - minFontSize!) / (maxWidth! - minWidth!)
+        let intersection = toFixed(-minWidth! * slope + minFontSize!)
+        let preferred = `${intersection}rem + ${toFixed(slope * 100)}vi`
+
+        let value = `clamp(${minFontSize}rem, ${preferred}, ${maxFontSize}rem)`
+        newNode.type = 'word'
+        newNode.value = value
+      }
     })
 
     decl.cloneBefore({ value: parsedValue.toString() })

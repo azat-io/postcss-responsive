@@ -140,3 +140,14 @@ it('supports custom function name', () => {
     },
   )
 })
+
+it('converts to simple value if min value and max values are equal', () => {
+  testPlugin(
+    '.test { font-size: responsive(2.5rem, 2.5rem); }',
+    '.test { font-size: 2.5rem; }',
+    {
+      minWidth: 480,
+      maxWidth: 1280,
+    },
+  )
+})
