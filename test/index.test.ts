@@ -151,3 +151,13 @@ it('converts to simple value if min value and max values are equal', () => {
     },
   )
 })
+
+it('supports legacy units', () => {
+  testPlugin(
+    '.test { font-size: responsive(2.25rem, 3rem, 480px, 1280px); }',
+    '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
+    {
+      legacy: true,
+    },
+  )
+})
