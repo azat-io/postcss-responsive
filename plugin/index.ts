@@ -13,7 +13,7 @@ export interface PluginOptions {
 
 const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
   postcssPlugin: 'postcss-responsive',
-  Declaration: (decl: Declaration) => {
+  Declaration: (decl: Declaration): void => {
     let declValue = decl.value
     let funcName = options.funcName ?? 'responsive'
     let pattern = `(^|[^\\w-])(${funcName})\\(`
@@ -36,7 +36,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
         unit = 'px'
         value = `${value}${unit}`
       } else {
-        unit = value.replace(/(-)?\d+(\.\d+)?/g, '')
+        unit = value.replaceAll(/(-)?\d+(\.\d+)?/g, '')
       }
       if (!['px', 'em', 'rem'].includes(unit)) {
         throw decl.error(`Invalid unit ${unit}. Try to use px or rem.`, {
