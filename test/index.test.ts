@@ -11,10 +11,8 @@ describe('postcss-response', () => {
     let convertCss = async (
       input: string,
       opts?: PluginOptions,
-    ): Promise<Result> => {
-      let result = await postcss([postcssResponsive(opts)]).process(input)
-      return result
-    }
+    ): Promise<Result> =>
+      await postcss([postcssResponsive(opts)]).process(input)
 
     let testPlugin = async (
       input: string,
@@ -128,9 +126,11 @@ describe('postcss-response', () => {
         maxWidth: 1280,
       }),
     ]).process('.test { letter-spacing: responsive(-1px, -2px); }')
+
     expect(result.css).toBe(
       '.test { letter-spacing: clamp(-0.0625rem, -0.025rem + -0.125vi, -0.125rem); }',
     )
+
     expect(result.warnings).toHaveLength(0)
   })
 
@@ -142,9 +142,11 @@ describe('postcss-response', () => {
         funcName: 'fluid',
       }),
     ]).process('.test { font-size: fluid(2.25rem, 3rem); }')
+
     expect(result.css).toBe(
       '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vi, 3rem); }',
     )
+
     expect(result.warnings).toHaveLength(0)
   })
 
@@ -155,7 +157,9 @@ describe('postcss-response', () => {
         maxWidth: 1280,
       }),
     ]).process('.test { font-size: responsive(2.5rem, 2.5rem); }')
+
     expect(result.css).toBe('.test { font-size: 2.5rem; }')
+
     expect(result.warnings).toHaveLength(0)
   })
 
@@ -165,9 +169,11 @@ describe('postcss-response', () => {
         legacy: true,
       }),
     ]).process('.test { font-size: responsive(2.25rem, 3rem, 480px, 1280px); }')
+
     expect(result.css).toBe(
       '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vw, 3rem); }',
     )
+
     expect(result.warnings).toHaveLength(0)
   })
 })

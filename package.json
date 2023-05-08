@@ -2,7 +2,6 @@
   "name": "postcss-responsive",
   "description": "PostCSS plugin that improves developer experience of responsive design",
   "version": "0.6.0",
-  "type": "module",
   "repository": "azat-io/postcss-responsive",
   "author": "Azat S. <to@azat.io>",
   "license": "MIT",
@@ -45,21 +44,21 @@
     "postcss-value-parser": "^4.2.0"
   },
   "devDependencies": {
-    "@azat-io/eslint-config-typescript": "^0.6.1",
-    "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^17.6.1",
-    "@types/node": "^18.15.11",
-    "@vitest/coverage-c8": "^0.30.1",
-    "@vitest/runner": "^0.30.1",
+    "@azat-io/eslint-config-typescript": "^0.8.0",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@types/node": "^20.1.0",
+    "@vitest/coverage-c8": "^0.31.0",
+    "@vitest/runner": "^0.31.0",
     "bumpp": "^9.1.0",
     "clean-publish": "^4.2.0",
-    "eslint": "^8.38.0",
-    "postcss": "^8.4.22",
+    "eslint": "^8.40.0",
+    "postcss": "^8.4.23",
     "simple-git-hooks": "^2.8.1",
     "standard-version": "^9.5.0",
     "tsm": "^2.3.0",
     "typescript": "^5.0.4",
-    "vite": "^4.2.2",
-    "vitest": "^0.30.1"
+    "vite": "^4.3.5",
+    "vitest": "^0.31.0"
   }
 }

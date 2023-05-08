@@ -31,19 +31,24 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
       if (value === undefined || root === undefined) {
         return undefined
       }
+
       let unit: string
+
       if (typeof value === 'number') {
         unit = 'px'
         value = `${value}${unit}`
       } else {
         unit = value.replaceAll(/(-)?\d+(\.\d+)?/g, '')
       }
+
       if (!['px', 'em', 'rem'].includes(unit)) {
         throw decl.error(`Invalid unit ${unit}. Try to use px or rem.`, {
           word: unit,
         })
       }
+
       let num = parseFloat(value)
+
       return unit === 'px' ? num / root : num
     }
 
@@ -54,6 +59,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
       if (node.type !== 'function' || node.value !== funcName) {
         return
       }
+
       let values = node.nodes
         .filter(nodeElement => nodeElement.type === 'word')
         .map(nodeElement => nodeElement.value)
@@ -77,6 +83,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
       }
 
       let newNode = node as Node
+
       if (minFontSize === maxFontSize) {
         newNode.type = 'word'
         newNode.value = `${minFontSize}rem`
