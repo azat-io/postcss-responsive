@@ -4,15 +4,14 @@ import type { Node } from 'postcss-value-parser'
 import valueParser from 'postcss-value-parser'
 
 export interface PluginOptions {
-  root?: number
-  minWidth?: number
-  maxWidth?: number
   funcName?: string
+  maxWidth?: number
+  minWidth?: number
   legacy?: boolean
+  root?: number
 }
 
 const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
-  postcssPlugin: 'postcss-responsive',
   Declaration: (decl: Declaration): void => {
     let declValue = decl.value
     let funcName = options.funcName ?? 'responsive'
@@ -27,7 +26,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
     let convertToRem = (
       value?: string | number,
       root?: number,
-    ): number | undefined => {
+    ): undefined | number => {
       if (value === undefined || root === undefined) {
         return undefined
       }
@@ -41,7 +40,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
         unit = value.replaceAll(/(-)?\d+(\.\d+)?/g, '')
       }
 
-      if (!['px', 'em', 'rem'].includes(unit)) {
+      if (!['rem', 'em', 'px'].includes(unit)) {
         throw decl.error(`Invalid unit ${unit}. Try to use px or rem.`, {
           word: unit,
         })
@@ -102,6 +101,7 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
     decl.cloneBefore({ value: parsedValue.toString() })
     decl.remove()
   },
+  postcssPlugin: 'postcss-responsive',
 })
 
 postcssResponsive.postcss = true

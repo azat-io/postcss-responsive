@@ -1,8 +1,9 @@
-import type { PluginOptions } from '../plugin'
 import type { Result } from 'postcss'
 
 import { describe, expect, it } from 'vitest'
 import postcss from 'postcss'
+
+import type { PluginOptions } from '../plugin'
 
 import postcssResponsive from '../plugin'
 
@@ -33,8 +34,8 @@ describe('postcss-response', () => {
       '.test { font-size: responsive(2.25rem, 3rem, 480px, 1280px); }',
       '.test { font-size: clamp(2.25rem, 1.8rem + 1.5vi, 3rem); }',
       {
-        minWidth: 400,
         maxWidth: 1200,
+        minWidth: 400,
       },
     )
 
@@ -42,8 +43,8 @@ describe('postcss-response', () => {
       '.test { display: grid; grid-template-columns: responsive(100px, 300px) 1fr; }',
       '.test { display: grid; grid-template-columns: clamp(6.25rem, -1.25rem + 25vi, 18.75rem) 1fr; }',
       {
-        minWidth: 480,
         maxWidth: 1280,
+        minWidth: 480,
       },
     )
 
@@ -51,8 +52,8 @@ describe('postcss-response', () => {
       '.test { display: grid; grid-template-columns: responsive(100px, 300px) responsive(100px, 300px) 1fr; }',
       '.test { display: grid; grid-template-columns: clamp(6.25rem, -1.25rem + 25vi, 18.75rem) clamp(6.25rem, -1.25rem + 25vi, 18.75rem) 1fr; }',
       {
-        minWidth: 480,
         maxWidth: 1280,
+        minWidth: 480,
       },
     )
 
@@ -92,8 +93,8 @@ describe('postcss-response', () => {
     await expect(async () => {
       await postcss([
         postcssResponsive({
-          minWidth: 480,
           maxWidth: 1280,
+          minWidth: 480,
         }),
       ]).process('.test { font-size: responsive(); }')
     }).rejects.toThrow('Missing min font size in responsive function.')
@@ -101,8 +102,8 @@ describe('postcss-response', () => {
     await expect(async () => {
       await postcss([
         postcssResponsive({
-          minWidth: 480,
           maxWidth: 1280,
+          minWidth: 480,
         }),
       ]).process('.test { font-size: responsive(16px); }')
     }).rejects.toThrow('Missing max font size in responsive function.')
@@ -122,8 +123,8 @@ describe('postcss-response', () => {
   it('supports negative values', async () => {
     let result = await postcss([
       postcssResponsive({
-        minWidth: 480,
         maxWidth: 1280,
+        minWidth: 480,
       }),
     ]).process('.test { letter-spacing: responsive(-1px, -2px); }')
 
@@ -137,9 +138,9 @@ describe('postcss-response', () => {
   it('supports custom function name', async () => {
     let result = await postcss([
       postcssResponsive({
-        minWidth: 480,
-        maxWidth: 1280,
         funcName: 'fluid',
+        maxWidth: 1280,
+        minWidth: 480,
       }),
     ]).process('.test { font-size: fluid(2.25rem, 3rem); }')
 
@@ -153,8 +154,8 @@ describe('postcss-response', () => {
   it('converts to simple value if min value and max values are equal', async () => {
     let result = await postcss([
       postcssResponsive({
-        minWidth: 480,
         maxWidth: 1280,
+        minWidth: 480,
       }),
     ]).process('.test { font-size: responsive(2.5rem, 2.5rem); }')
 
