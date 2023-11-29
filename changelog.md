@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/azat-io/postcss-responsive/compare/v0.6.0...v1.0.0) (2023-11-29)
+
+### Features
+
+- migrate to tsup ([d1d1cf8](https://github.com/azat-io/postcss-responsive/commit/d1d1cf89557e09526665525d4b8b755f89c48773))
+
 ## [0.6.0](https://github.com/azat-io/postcss-responsive/compare/v0.5.2...v0.6.0) (2023-04-18)
 
 ### Features
