@@ -16,7 +16,7 @@
     "clamp"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "tsup",
     "release": "pnpm release:check && pnpm release:version && pnpm release:publish",
     "release:changelog": "standard-version --infile changelog.md --same-file --skip.bump --skip.commit --skip.tag && prettier --write changelog.md",
     "release:check": "pnpm test && pnpm build",
@@ -28,10 +28,15 @@
     "test:unit": "vitest run --coverage",
     "test": "pnpm run /^test:/"
   },
+  "main": "./dist/index.js",
   "exports": {
     ".": {
-      "require": "./dist/umd.js",
-      "import": "./dist/es.js"
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.ts"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -71,8 +76,8 @@
     "simple-git-hooks": "^2.9.0",
     "standard-version": "^9.5.0",
     "tsm": "^2.3.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.3.2",
-    "vite": "^5.0.4",
     "vitest": "^0.34.6"
   }
 }
