@@ -11,16 +11,16 @@ describe('postcss-response', () => {
   it('converts responsive function to css clamp', async () => {
     let convertCss = async (
       input: string,
-      opts?: PluginOptions,
+      options?: PluginOptions,
     ): Promise<Result> =>
-      await postcss([postcssResponsive(opts)]).process(input)
+      await postcss([postcssResponsive(options)]).process(input)
 
     let testPlugin = async (
       input: string,
       output: string,
-      opts?: PluginOptions,
+      options?: PluginOptions,
     ): Promise<void> => {
-      let result = await convertCss(input, opts)
+      let result = await convertCss(input, options)
       expect(result.css).toBe(output)
       expect(result.warnings).toHaveLength(0)
     }

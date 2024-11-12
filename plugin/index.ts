@@ -14,8 +14,8 @@ export interface PluginOptions {
 const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
   Declaration: (decl: Declaration): void => {
     let declValue = decl.value
-    let funcName = options.funcName ?? 'responsive'
-    let pattern = `(^|[^\\w-])(${funcName})\\(`
+    let functionName = options.funcName ?? 'responsive'
+    let pattern = `(^|[^\\w-])(${functionName})\\(`
 
     if (!new RegExp(pattern, 'i').test(declValue.toLowerCase())) {
       return
@@ -26,18 +26,19 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
     let convertToRem = (
       value?: string | number,
       root?: number,
-    ): undefined | number => {
-      if (value === undefined || root === undefined) {
-        return undefined
+    ): number | null => {
+      if (!value || !root) {
+        return null
       }
 
       let unit: string
+      let currentValue = value.toString()
 
       if (typeof value === 'number') {
         unit = 'px'
-        value = `${value}${unit}`
+        currentValue = `${value}${unit}`
       } else {
-        unit = value.replaceAll(/(-)?\d+(\.\d+)?/g, '')
+        unit = currentValue.replaceAll(/-?\d+(?:\.\d+)?/gu, '')
       }
 
       if (!['rem', 'em', 'px'].includes(unit)) {
@@ -46,16 +47,16 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
         })
       }
 
-      let num = parseFloat(value)
+      let number = Number.parseFloat(currentValue)
 
-      return unit === 'px' ? num / root : num
+      return unit === 'px' ? number / root : number
     }
 
-    let toFixed = (value: number): number => parseFloat(value.toFixed(4))
-    let hasNoValue = (value?: number): boolean => !Number.isFinite(value)
+    let toFixed = (value: number): number => Number.parseFloat(value.toFixed(4))
+    let hasNoValue = (value?: number | null): boolean => !Number.isFinite(value)
 
     parsedValue.walk(node => {
-      if (node.type !== 'function' || node.value !== funcName) {
+      if (node.type !== 'function' || node.value !== functionName) {
         return
       }
 
@@ -70,13 +71,13 @@ const postcssResponsive: PluginCreator<PluginOptions> = (options = {}) => ({
       let maxWidth = convertToRem(values[3] ?? options.maxWidth, rootFontSize)
 
       if (hasNoValue(minWidth)) {
-        throw decl.error(`Missing min width in ${funcName} function.`)
+        throw decl.error(`Missing min width in ${functionName} function.`)
       } else if (hasNoValue(maxWidth)) {
-        throw decl.error(`Missing max width in ${funcName} function.`)
+        throw decl.error(`Missing max width in ${functionName} function.`)
       } else if (hasNoValue(minFontSize)) {
-        throw decl.error(`Missing min font size in ${funcName} function.`)
+        throw decl.error(`Missing min font size in ${functionName} function.`)
       } else if (hasNoValue(maxFontSize)) {
-        throw decl.error(`Missing max font size in ${funcName} function.`)
+        throw decl.error(`Missing max font size in ${functionName} function.`)
       } else if (maxWidth! < minWidth!) {
         throw decl.error('Max width must be greater than the minimum.')
       }
